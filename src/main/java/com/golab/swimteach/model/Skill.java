@@ -22,6 +22,11 @@ public class Skill {
         this.status = SkillStatus.NOT_TRAINED;
     }
 
+    public Skill(SkillDetails skillDetails, SkillStatus status) {
+        this.skillDetails = skillDetails;
+        this.status = status;
+    }
+
     public Skill() {
 
     }

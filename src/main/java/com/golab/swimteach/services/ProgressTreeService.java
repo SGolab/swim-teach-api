@@ -1,7 +1,9 @@
 package com.golab.swimteach.services;
 
-import org.springframework.stereotype.Service;
+import com.golab.swimteach.dto.ProgressTreeDto;
 
-@Service
-public class ProgressTreeService {
+public interface ProgressTreeService {
+    ProgressTreeDto getProgressTree(Long swimmerId);
+
+    ProgressTreeDto getProgressTree();
 }
