@@ -20,6 +20,7 @@ public class SkillDetailsMapper {
 
     public SkillDetailsDto toSkillDetailsDto(SkillDetails details) {
         SkillDetailsDto dto = new SkillDetailsDto();
+        dto.setId(details.getId());
         dto.setTitle(details.getTitle());
         dto.setDescription(details.getDescription());
         return dto;

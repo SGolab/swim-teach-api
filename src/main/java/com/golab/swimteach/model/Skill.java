@@ -1,6 +1,7 @@
 package com.golab.swimteach.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -15,6 +16,7 @@ public class Skill {
     @OneToOne
     private SkillDetails skillDetails;
 
+    @Setter
     private SkillStatus status;
 
     public Skill(SkillDetails skillDetails) {

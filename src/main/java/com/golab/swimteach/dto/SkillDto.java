@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class SkillDto {
+    private Long id;
     private SkillStatus status;
-    private SkillDetailsDto details;
+    private String title;
 }

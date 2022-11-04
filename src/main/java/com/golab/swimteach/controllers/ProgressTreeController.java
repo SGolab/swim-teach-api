@@ -1,12 +1,12 @@
 package com.golab.swimteach.controllers;
 
 import com.golab.swimteach.dto.ProgressTreeDto;
+import com.golab.swimteach.dto.SkillDto;
 import com.golab.swimteach.model.User;
 import com.golab.swimteach.services.ProgressTreeServiceImpl;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 public class ProgressTreeController {
 
@@ -24,7 +24,7 @@ public class ProgressTreeController {
         if (user.getSwimmer() == null) {
             progressTreeDto = progressTreeService.getProgressTreeAllUnlocked();
         } else {
-            progressTreeDto = progressTreeService.getProgressTreeAllUnlocked(user.getSwimmer().getId());
+            progressTreeDto = progressTreeService.getProgressTree(user.getSwimmer().getId());
         }
 
         return progressTreeDto;
@@ -32,6 +32,11 @@ public class ProgressTreeController {
 
     @GetMapping("swimmers/{swimmerId}/progressTree")
     public ProgressTreeDto getProgressTreeBySwimmerId(@PathVariable Long swimmerId) {
-        return progressTreeService.getProgressTreeAllUnlocked(swimmerId);
+        return progressTreeService.getProgressTree(swimmerId);
+    }
+
+    @PutMapping("/skills/{skillId}/updateStatus")
+    public SkillDto updateSkillStatus(@PathVariable Long skillId, @RequestBody SkillDto skillDto) {
+        return progressTreeService.updateSkillStatus(skillId, skillDto);
     }
 }

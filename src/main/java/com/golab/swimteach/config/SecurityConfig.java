@@ -48,7 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             .permitAll();
                 })
                 .httpBasic()
-                .and().csrf().ignoringAntMatchers("/h2-console/**", "/api/**");
+//                .and().csrf().ignoringAntMatchers("/h2-console/**", "/api/**");
+        .and().csrf().disable();
 
         //h2 console config
         http.headers().frameOptions().sameOrigin();

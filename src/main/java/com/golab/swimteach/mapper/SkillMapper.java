@@ -16,8 +16,9 @@ public class SkillMapper {
 
     public SkillDto toSkillDto(Skill skill) {
         SkillDto skillDto = new SkillDto();
+        skillDto.setId(skill.getId());
         skillDto.setStatus(skill.getStatus());
-        skillDto.setDetails(SkillDetailsMapper.getInstance().toSkillDetailsDto(skill.getSkillDetails()));
+        skillDto.setTitle(skill.getSkillDetails().getTitle());
         return skillDto;
     }
 }
