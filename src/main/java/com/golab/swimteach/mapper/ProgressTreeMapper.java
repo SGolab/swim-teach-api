@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ProgressTreeMapper {
 
-    private static ProgressTreeMapper INSTANCE = new ProgressTreeMapper();
+    private static ProgressTreeMapper INSTANCE;
 
     private ProgressTreeMapper() {
     }

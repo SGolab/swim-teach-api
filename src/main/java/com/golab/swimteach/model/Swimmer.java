@@ -21,10 +21,14 @@ public class Swimmer {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Skill> skillSet = new HashSet<>();
 
-    public Swimmer(String firstName, String lastName, Set<SkillDetails> skillDetails) {
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private Set<Goal> goalSet = new HashSet<>();
+
+    public Swimmer(String firstName, String lastName, Set<SkillDetails> skillDetails, Set<GoalDetails> goalDetails) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.skillSet = skillDetails.stream().map(Skill::new).collect(Collectors.toSet());
+        this.goalSet = goalDetails.stream().map(Goal::new).collect(Collectors.toSet());
     }
 
     public Swimmer() {
