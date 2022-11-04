@@ -26,14 +26,14 @@ public class ProgressTreeServiceImpl implements ProgressTreeService{
     }
 
     @Override
-    public ProgressTreeDto getProgressTree(Long swimmerId) {
+    public ProgressTreeDto getProgressTreeAllUnlocked(Long swimmerId) {
         Swimmer swimmer = swimmerRepository.findById(swimmerId)
                 .orElseThrow(() -> new RuntimeException("Swimmer Not Found")); //todo exceptions
         return mapper.toProgressTree(new ArrayList<>(swimmer.getSkillSet()));
     }
 
     @Override
-    public ProgressTreeDto getProgressTree() {
+    public ProgressTreeDto getProgressTreeAllUnlocked() {
         List<SkillDetails> skillDetails = skillDetailsRepository.findAll();
 
         List<Skill> skills = skillDetails.stream()

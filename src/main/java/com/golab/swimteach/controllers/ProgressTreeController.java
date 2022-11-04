@@ -5,10 +5,8 @@ import com.golab.swimteach.model.User;
 import com.golab.swimteach.services.ProgressTreeServiceImpl;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-@RequestMapping("/progressTree")
 @RestController
 public class ProgressTreeController {
 
@@ -18,17 +16,22 @@ public class ProgressTreeController {
         this.progressTreeService = progressTreeService;
     }
 
-    @GetMapping("")
+    @GetMapping("/progressTree")
     public ProgressTreeDto getProgressTree(@AuthenticationPrincipal User user) {
 
         ProgressTreeDto progressTreeDto;
 
         if (user.getSwimmer() == null) {
-            progressTreeDto = progressTreeService.getProgressTree();
+            progressTreeDto = progressTreeService.getProgressTreeAllUnlocked();
         } else {
-            progressTreeDto = progressTreeService.getProgressTree(user.getSwimmer().getId());
+            progressTreeDto = progressTreeService.getProgressTreeAllUnlocked(user.getSwimmer().getId());
         }
 
         return progressTreeDto;
+    }
+
+    @GetMapping("swimmers/{swimmerId}/progressTree")
+    public ProgressTreeDto getProgressTreeBySwimmerId(@PathVariable Long swimmerId) {
+        return progressTreeService.getProgressTreeAllUnlocked(swimmerId);
     }
 }
