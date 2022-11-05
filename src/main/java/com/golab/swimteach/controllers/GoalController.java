@@ -30,4 +30,9 @@ public class GoalController {
     public GoalDto updateGoalStatus(@PathVariable Long goalId, @RequestBody GoalDto goalDto) {
         return goalService.updateGoalStatus(goalId, goalDto);
     }
+
+    @GetMapping("/swimmers/{swimmerId}/goals")
+    public List<GoalDto> getGoalListBySwimmerId(@PathVariable Long swimmerId) {
+        return goalService.getGoalList(swimmerId);
+    }
 }
