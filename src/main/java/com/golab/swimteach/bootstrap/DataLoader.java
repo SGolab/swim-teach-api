@@ -15,16 +15,17 @@ import java.util.Set;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    SkillDetailsRepository skillDetailsRepository;
+    private final SkillDetailsRepository skillDetailsRepository;
 
-    GoalDetailsRepository goalDetailsRepository;
+    private final GoalDetailsRepository goalDetailsRepository;
 
-    SwimmerRepository swimmerRepository;
+    private final SwimmerRepository swimmerRepository;
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public DataLoader(SkillDetailsRepository skillDetailsRepository, SwimmerRepository swimmerRepository, UserRepository userRepository) {
+    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, SwimmerRepository swimmerRepository, UserRepository userRepository) {
         this.skillDetailsRepository = skillDetailsRepository;
+        this.goalDetailsRepository = goalDetailsRepository;
         this.swimmerRepository = swimmerRepository;
         this.userRepository = userRepository;
     }
