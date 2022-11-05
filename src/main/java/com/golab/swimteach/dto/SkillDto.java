@@ -9,5 +9,6 @@ import lombok.Setter;
 public class SkillDto {
     private Long id;
     private SkillStatus status;
+    private Long detailsId;
     private String title;
 }
