@@ -11,4 +11,6 @@ public class SkillDto {
     private SkillStatus status;
     private Long detailsId;
     private String title;
+    private String description;
+    private String url;
 }

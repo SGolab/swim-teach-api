@@ -2,11 +2,13 @@ package com.golab.swimteach.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@ToString
 public class Skill {
 
     @Id
@@ -22,11 +24,6 @@ public class Skill {
     public Skill(SkillDetails skillDetails) {
         this.skillDetails = skillDetails;
         this.status = SkillStatus.NOT_TRAINED;
-    }
-
-    public Skill(SkillDetails skillDetails, SkillStatus status) {
-        this.skillDetails = skillDetails;
-        this.status = status;
     }
 
     public Skill() {

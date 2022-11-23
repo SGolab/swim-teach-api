@@ -20,6 +20,8 @@ public class SkillMapper {
         skillDto.setStatus(skill.getStatus());
         skillDto.setDetailsId(skill.getSkillDetails().getId());
         skillDto.setTitle(skill.getSkillDetails().getTitle());
+        skillDto.setDescription(skill.getSkillDetails().getDescription());
+        skillDto.setUrl(skill.getSkillDetails().getUrl());
         return skillDto;
     }
 }
