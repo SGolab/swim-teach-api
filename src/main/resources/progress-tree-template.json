@@ -7,22 +7,22 @@
           "title": "LEG MOVEMENT",
           "skills": [
             {
+              "id": "1",
               "title": "KICKING ON WALL",
               "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw",
-              "status": "ACQUIRED"
+              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
             },
             {
+              "id": "2",
               "title": "KICKING HOLDING WALL",
               "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw",
-              "status": "ACQUIRED"
+              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
             },
             {
+              "id": "3",
               "title": "KICKING WITH BOARD",
               "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw",
-              "status": "TRAINED"
+              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
             }
           ]
         },
@@ -30,16 +30,16 @@
           "title": "ARM MOVEMENT",
           "skills": [
             {
+              "id": "4",
               "title": "MOVING ARMS SWIMMING WITH BOARD ON BACK",
               "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw",
-              "status": "NOT_TRAINED"
+              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
             },
             {
+              "id": "5",
               "title": "MOVING ARMS SWIMMING WITH BOARD ON STOMACH",
               "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw",
-              "status": "NOT_TRAINED"
+              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
             }
           ]
         },
@@ -47,22 +47,22 @@
           "title": "DIVING",
           "skills": [
             {
+              "id": "6",
               "title": "DIVING HEAD VERTICALLY",
               "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw",
-              "status": "ACQUIRED"
+              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
             },
             {
+              "id": "7",
               "title": "DIVING HEAD HORIZONTALLY",
               "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw",
-              "status": "ACQUIRED"
+              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
             },
             {
+              "id": "8",
               "title": "BUOY EXERCISE",
               "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw",
-              "status": "TRAINED"
+              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
             }
           ]
         }
