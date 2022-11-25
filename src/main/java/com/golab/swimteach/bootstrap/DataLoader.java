@@ -53,7 +53,6 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadUsers() {
-
         User admin = new User();
         admin.setSwimmer(null);
         admin.setUsername("admin");
