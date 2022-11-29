@@ -7,6 +7,7 @@ import com.golab.swimteach.dto.ProgressTreeTemplate.StageTemplate.SubjectTemplat
 import com.golab.swimteach.mapper.SkillMapper;
 import com.golab.swimteach.model.Skill;
 import com.golab.swimteach.model.SkillDetails;
+import com.golab.swimteach.model.SkillStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +101,7 @@ public class ProgressTreeFactory {
 
     private static List<SkillDto> insertSkillsAllUnlocked(List<SkillDetails> skillDetailsList) {
         return skillDetailsList.stream()
-                .map(Skill::new)
+                .map(skillDetails -> new Skill(skillDetails, SkillStatus.ACQUIRED))
                 .map(skillMapper::toSkillDto).toList();
     }
 }
