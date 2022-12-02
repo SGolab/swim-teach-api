@@ -2,15 +2,14 @@ package com.golab.swimteach.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@ToString
 public class GoalDetails {
 
     @Id
@@ -18,6 +17,8 @@ public class GoalDetails {
     private Long id;
 
     private String title;
+
+    @Lob
     private String description;
 
     public GoalDetails(String title, String description) {

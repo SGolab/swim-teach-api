@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -54,7 +55,8 @@ public class DataLoader implements CommandLineRunner {
         GoalsTemplate goalsTemplate = templateProvider.getGoalsTemplate();
         templateRepository.setGoalTemplate(goalsTemplate);
 
-        goalDetailsRepository.saveAll(goalsTemplate.getGoals());
+        goalDetailsRepository.saveAll(progressTreeTemplate.getGoalDetailsList());
+//        goalDetailsRepository.saveAll(goalsTemplate.getGoals());
     }
 
     private void loadUsers() {

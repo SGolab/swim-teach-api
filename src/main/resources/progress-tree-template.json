@@ -9,22 +9,27 @@
             {
               "id": "1",
               "title": "KICKING ON WALL",
-              "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "url": "https://www.youtube.com/embed/cHD3ySO9L5s"
             },
             {
               "id": "2",
               "title": "KICKING HOLDING WALL",
-              "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "url": "https://www.youtube.com/embed/cHD3ySO9L5s"
             },
             {
               "id": "3",
               "title": "KICKING WITH BOARD",
-              "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "url": "https://www.youtube.com/embed/cHD3ySO9L5s"
             }
-          ]
+          ],
+          "goal": {
+            "id": 2,
+            "title": "BASICS 2",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
         },
         {
           "title": "ARM MOVEMENT",
@@ -32,16 +37,21 @@
             {
               "id": "4",
               "title": "MOVING ARMS SWIMMING WITH BOARD ON BACK",
-              "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "url": "https://www.youtube.com/embed/cHD3ySO9L5s"
             },
             {
               "id": "5",
               "title": "MOVING ARMS SWIMMING WITH BOARD ON STOMACH",
-              "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "url": "https://www.youtube.com/embed/cHD3ySO9L5s"
             }
-          ]
+          ],
+          "goal": {
+            "id": 3,
+            "title": "BASICS 3",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
         },
         {
           "title": "DIVING",
@@ -49,24 +59,34 @@
             {
               "id": "6",
               "title": "DIVING HEAD VERTICALLY",
-              "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "url": "https://www.youtube.com/embed/cHD3ySO9L5s"
             },
             {
               "id": "7",
               "title": "DIVING HEAD HORIZONTALLY",
-              "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "url": "https://www.youtube.com/embed/cHD3ySO9L5s"
             },
             {
               "id": "8",
               "title": "BUOY EXERCISE",
-              "description": "SAMPLE DESC",
-              "url": "https://www.youtube.com/embed/pFN2n7CRqhw"
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "url": "https://www.youtube.com/embed/cHD3ySO9L5s"
             }
-          ]
+          ],
+          "goal": {
+            "id": 4,
+            "title": "BASICS 4",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
         }
-      ]
+      ],
+      "goal": {
+        "id": 1,
+        "title": "BASICS 1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
     }
   ]
 }

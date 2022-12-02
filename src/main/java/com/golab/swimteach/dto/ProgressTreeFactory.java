@@ -4,7 +4,9 @@ import com.golab.swimteach.dto.ProgressTreeDto.Stage;
 import com.golab.swimteach.dto.ProgressTreeDto.Stage.Subject;
 import com.golab.swimteach.dto.ProgressTreeTemplate.StageTemplate;
 import com.golab.swimteach.dto.ProgressTreeTemplate.StageTemplate.SubjectTemplate;
+import com.golab.swimteach.mapper.GoalMapper;
 import com.golab.swimteach.mapper.SkillMapper;
+import com.golab.swimteach.model.Goal;
 import com.golab.swimteach.model.Skill;
 import com.golab.swimteach.model.SkillDetails;
 import com.golab.swimteach.model.SkillStatus;
@@ -15,37 +17,49 @@ import java.util.List;
 public class ProgressTreeFactory {
 
     private static final SkillMapper skillMapper = SkillMapper.getInstance();
+    private static final GoalMapper goalMapper = GoalMapper.getInstance();
 
     private ProgressTreeFactory() {
     }
 
-    public static ProgressTreeDto createProgressTree(ProgressTreeTemplate template, List<Skill> skills) {
+    public static ProgressTreeDto createProgressTree(ProgressTreeTemplate template, List<Skill> skills, List<Goal> goals) {
         ProgressTreeDto progressTreeDto = new ProgressTreeDto();
-        progressTreeDto.setStages(createStages(template.getStages(), skills));
+        progressTreeDto.setStages(createStages(template.getStages(), skills, goals));
         return progressTreeDto;
     }
 
     private static List<Stage> createStages(List<StageTemplate> stageTemplates,
-                                            List<Skill> skills) {
+                                            List<Skill> skills,
+                                            List<Goal> goals) {
         List<Stage> sections = new ArrayList<>();
 
         stageTemplates.forEach(stageTemplate -> {
-            Stage section = new Stage();
-            section.setTitle(stageTemplate.getTitle());
-            section.setSubjects(createSubjects(stageTemplate.getSubjects(), skills));
-            sections.add(section);
+            Stage stage = new Stage();
+            stage.setTitle(stageTemplate.getTitle());
+            stage.setSubjects(createSubjects(stageTemplate.getSubjects(), skills, goals));
+            stage.setGoal(goalMapper.toGoalDto(goals.stream()
+                    .filter(g -> g.getDetails().getId().equals(stageTemplate.getGoal().getId()))
+                    .findFirst()
+                    .orElseThrow()));
+            sections.add(stage);
         });
 
         return sections;
     }
 
-    private static List<Subject> createSubjects(List<SubjectTemplate> subjectTemplates, List<Skill> skills) {
+    private static List<Subject> createSubjects(List<SubjectTemplate> subjectTemplates,
+                                                List<Skill> skills,
+                                                List<Goal> goals) {
         List<Subject> subjects = new ArrayList<>();
 
         subjectTemplates.forEach(subjectTemplate -> {
             Subject subject = new Subject();
             subject.setTitle(subjectTemplate.getTitle());
             subject.setSkills(insertSkills(subjectTemplate.getSkills(), skills));
+            subject.setGoal(goalMapper.toGoalDto(goals.stream()
+                    .filter(g -> g.getDetails().getId().equals(subjectTemplate.getGoal().getId()))
+                    .findFirst()
+                    .orElseThrow()));
             subjects.add(subject);
         });
 
@@ -74,16 +88,18 @@ public class ProgressTreeFactory {
     }
 
     private static List<Stage> createStagesAllUnlocked(List<StageTemplate> stageTemplates) {
-        List<Stage> sections = new ArrayList<>();
+        List<Stage> stages = new ArrayList<>();
 
         stageTemplates.forEach(stageTemplate -> {
-            Stage section = new Stage();
-            section.setTitle(stageTemplate.getTitle());
-            section.setSubjects(createSubjectsAllUnlocked(stageTemplate.getSubjects()));
-            sections.add(section);
+            Stage stage = new Stage();
+            stage.setTitle(stageTemplate.getTitle());
+            stage.setSubjects(createSubjectsAllUnlocked(stageTemplate.getSubjects()));
+            stage.setGoal(goalMapper.toGoalDto(new Goal(stageTemplate.getGoal())));
+
+            stages.add(stage);
         });
 
-        return sections;
+        return stages;
     }
 
     private static List<Subject> createSubjectsAllUnlocked(List<SubjectTemplate> subjectTemplates) {
@@ -93,6 +109,7 @@ public class ProgressTreeFactory {
             Subject subject = new Subject();
             subject.setTitle(subjectTemplate.getTitle());
             subject.setSkills(insertSkillsAllUnlocked(subjectTemplate.getSkills()));
+            subject.setGoal(goalMapper.toGoalDto(new Goal(subjectTemplate.getGoal())));
             subjects.add(subject);
         });
 

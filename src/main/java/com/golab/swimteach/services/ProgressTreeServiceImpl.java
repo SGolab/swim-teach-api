@@ -34,7 +34,7 @@ public class ProgressTreeServiceImpl implements ProgressTreeService {
 
         ProgressTreeTemplate template = progressTreeTemplateRepository.getTreeTemplate();
 
-        return ProgressTreeFactory.createProgressTree(template, new ArrayList<>(swimmer.getSkillSet()));
+        return ProgressTreeFactory.createProgressTree(template, new ArrayList<>(swimmer.getSkillSet()), new ArrayList<>(swimmer.getGoalsSet()));
     }
 
     @Override

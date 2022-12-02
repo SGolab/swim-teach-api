@@ -1,5 +1,6 @@
 package com.golab.swimteach.dto;
 
+import com.golab.swimteach.model.Goal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,17 +15,17 @@ public class ProgressTreeDto {
     @Getter
     @Setter
     static class Stage {
-
         private String title;
         private List<Subject> subjects;
+        private GoalDto goal;
 
         @Getter
         @Setter
         static
         class Subject {
-
             private String title;
             private List<SkillDto> skills;
+            private GoalDto goal;
         }
     }
 }
