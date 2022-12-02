@@ -1,0 +1,34 @@
+{
+"goals": [
+  {
+    "id": 1,
+    "title": "BASICS",
+    "description": "SAMPLE_DESC"
+  },
+  {
+    "id": 2,
+    "title": "GOALS 1",
+    "description": "SAMPLE_DESC"
+  },
+  {
+    "id": 3,
+    "title": "GOALS 2",
+    "description": "SAMPLE_DESC"
+  },
+  {
+    "id": 4,
+    "title": "GOALS 3",
+    "description": "SAMPLE_DESC"
+  },
+  {
+    "id": 5,
+    "title": "GOALS 4",
+    "description": "SAMPLE_DESC"
+  },
+  {
+    "id": 6,
+    "title": "GOALS 5",
+    "description": "SAMPLE_DESC"
+  }
+]
+}

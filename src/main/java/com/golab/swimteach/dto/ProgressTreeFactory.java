@@ -14,6 +14,8 @@ import java.util.List;
 
 public class ProgressTreeFactory {
 
+    private static final SkillMapper skillMapper = SkillMapper.getInstance();
+
     private ProgressTreeFactory() {
     }
 
@@ -49,8 +51,6 @@ public class ProgressTreeFactory {
 
         return subjects;
     }
-
-    private static final SkillMapper skillMapper = SkillMapper.getInstance();
 
     private static List<SkillDto> insertSkills(List<SkillDetails> skillDetailsList, List<Skill> skills) {
         List<Skill> result = new ArrayList<>();

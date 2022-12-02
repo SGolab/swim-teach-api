@@ -1,5 +1,6 @@
 package com.golab.swimteach.bootstrap;
 
+import com.golab.swimteach.dto.GoalsTemplate;
 import com.golab.swimteach.dto.ProgressTreeTemplate;
 import com.golab.swimteach.model.GoalDetails;
 import com.golab.swimteach.model.SkillDetails;
@@ -20,36 +21,40 @@ public class DataLoader implements CommandLineRunner {
 
     private final GoalDetailsRepository goalDetailsRepository;
 
-    private final ProgressTreeTemplateProvider progressTreeTemplateProvider;
+    private final TemplateProvider templateProvider;
 
-    private final ProgressTreeTemplateRepository progressTreeTemplateRepository;
+    private final TemplateRepository templateRepository;
 
     private final SwimmerRepository swimmerRepository;
 
     private final UserRepository userRepository;
 
-    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, ProgressTreeTemplateProvider progressTreeTemplateProvider, ProgressTreeTemplateRepository progressTreeTemplateRepository, SwimmerRepository swimmerRepository, UserRepository userRepository) {
+    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, TemplateProvider progressTreeTemplateProvider, TemplateRepository progressTreeTemplateRepository, SwimmerRepository swimmerRepository, UserRepository userRepository) {
         this.skillDetailsRepository = skillDetailsRepository;
         this.goalDetailsRepository = goalDetailsRepository;
-        this.progressTreeTemplateProvider = progressTreeTemplateProvider;
-        this.progressTreeTemplateRepository = progressTreeTemplateRepository;
+        this.templateProvider = progressTreeTemplateProvider;
+        this.templateRepository = progressTreeTemplateRepository;
         this.swimmerRepository = swimmerRepository;
         this.userRepository = userRepository;
     }
 
     @Override
     public void run(String... args) {
-        loadProgressTreeTemplate();
-        loadGoalDetails();
+        loadTemplates();
         loadSwimmers();
         loadUsers();
     }
 
-    private void loadProgressTreeTemplate() {
-        ProgressTreeTemplate template = progressTreeTemplateProvider.getProgressTreeTemplate();
-        progressTreeTemplateRepository.setTreeTemplate(template);
+    private void loadTemplates() {
+        ProgressTreeTemplate progressTreeTemplate = templateProvider.getProgressTreeTemplate();
+        templateRepository.setTreeTemplate(progressTreeTemplate);
 
-        skillDetailsRepository.saveAll(template.getSkillDetailsList());
+        skillDetailsRepository.saveAll(progressTreeTemplate.getSkillDetailsList());
+
+        GoalsTemplate goalsTemplate = templateProvider.getGoalsTemplate();
+        templateRepository.setGoalTemplate(goalsTemplate);
+
+        goalDetailsRepository.saveAll(goalsTemplate.getGoals());
     }
 
     private void loadUsers() {
@@ -78,13 +83,5 @@ public class DataLoader implements CommandLineRunner {
         );
 
         swimmerRepository.saveAll(swimmerList);
-    }
-
-    private void loadGoalDetails() {
-        List<GoalDetails> goalDetailsList = List.of(
-                new GoalDetails("BASICS", "SAMPLE_DESC")
-        );
-
-        goalDetailsRepository.saveAll(goalDetailsList);
     }
 }

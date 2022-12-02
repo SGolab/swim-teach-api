@@ -1,6 +1,9 @@
 package com.golab.swimteach.services;
 
 import com.golab.swimteach.dto.GoalDto;
+import com.golab.swimteach.dto.GoalsListDto;
+import com.golab.swimteach.dto.GoalsListFactory;
+import com.golab.swimteach.dto.GoalsTemplate;
 import com.golab.swimteach.mapper.GoalMapper;
 import com.golab.swimteach.model.Goal;
 import com.golab.swimteach.model.GoalDetails;
@@ -9,6 +12,7 @@ import com.golab.swimteach.model.Swimmer;
 import com.golab.swimteach.repositories.GoalDetailsRepository;
 import com.golab.swimteach.repositories.GoalRepository;
 import com.golab.swimteach.repositories.SwimmerRepository;
+import com.golab.swimteach.repositories.TemplateRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,32 +26,36 @@ public class GoalServiceImpl implements GoalService {
     private final GoalDetailsRepository goalDetailsRepository;
     private final GoalRepository goalRepository;
 
-    public GoalServiceImpl(SwimmerRepository swimmerRepository, GoalDetailsRepository goalDetailsRepository, GoalRepository goalRepository) {
+    private final TemplateRepository templateRepository;
+
+    public GoalServiceImpl(SwimmerRepository swimmerRepository, GoalDetailsRepository goalDetailsRepository, GoalRepository goalRepository, TemplateRepository templateRepository) {
         this.swimmerRepository = swimmerRepository;
         this.goalDetailsRepository = goalDetailsRepository;
         this.goalRepository = goalRepository;
+        this.templateRepository = templateRepository;
     }
 
     @Override
-    public List<GoalDto> getGoalList(Long swimmerId) {
+    public GoalsListDto getGoalList(Long swimmerId) {
         Swimmer swimmer = swimmerRepository.findById(swimmerId)
                 .orElseThrow(() -> new RuntimeException("Swimmer Not Found")); //todo exceptions
 
-        return swimmer.getGoalSet().stream().map(goalMapper::toGoalDto).toList();
+        GoalsTemplate goalTemplate = templateRepository.getGoalTemplate();
+
+        GoalsListDto goalsListDto = GoalsListFactory.createGoalsList(goalTemplate, swimmer.getGoalsSet());
+
+        return goalsListDto;
     }
 
     @Override
-    public List<GoalDto> getGoalList() {
+    public GoalsListDto getGoalList() {
         List<GoalDetails> goalDetails = goalDetailsRepository.findAll();
 
-        List<Goal> goals = goalDetails.stream().map(gd -> {
-            Goal goal = new Goal();
-            goal.setDetails(gd);
-            goal.setStatus(GoalStatus.ACHIEVED);
-            return goal;
-        }).toList();
+        GoalsTemplate goalTemplate = templateRepository.getGoalTemplate();
 
-        return goals.stream().map(goalMapper::toGoalDto).toList();
+        GoalsListDto goalsListDto = GoalsListFactory.createGoalsList(goalTemplate);
+
+        return goalsListDto;
     }
 
     @Override

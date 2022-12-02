@@ -7,7 +7,7 @@ import com.golab.swimteach.dto.SkillDto;
 import com.golab.swimteach.mapper.SkillMapper;
 import com.golab.swimteach.model.Skill;
 import com.golab.swimteach.model.Swimmer;
-import com.golab.swimteach.repositories.ProgressTreeTemplateRepository;
+import com.golab.swimteach.repositories.TemplateRepository;
 import com.golab.swimteach.repositories.SkillRepository;
 import com.golab.swimteach.repositories.SwimmerRepository;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public class ProgressTreeServiceImpl implements ProgressTreeService {
     private final SwimmerRepository swimmerRepository;
     private final SkillRepository skillRepository;
-    private final ProgressTreeTemplateRepository progressTreeTemplateRepository;
+    private final TemplateRepository progressTreeTemplateRepository;
     private final SkillMapper skillMapper = SkillMapper.getInstance();
 
-    public ProgressTreeServiceImpl(SwimmerRepository swimmerRepository, SkillRepository skillRepository, ProgressTreeTemplateRepository progressTreeTemplateRepository) {
+    public ProgressTreeServiceImpl(SwimmerRepository swimmerRepository, SkillRepository skillRepository, TemplateRepository progressTreeTemplateRepository) {
         this.swimmerRepository = swimmerRepository;
         this.skillRepository = skillRepository;
         this.progressTreeTemplateRepository = progressTreeTemplateRepository;

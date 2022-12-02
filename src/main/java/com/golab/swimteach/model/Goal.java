@@ -24,6 +24,11 @@ public class Goal {
         this.details = details;
     }
 
+    public Goal(GoalDetails details, GoalStatus goalStatus) {
+        this.status = goalStatus;
+        this.details = details;
+    }
+
     public Goal() {
 
     }

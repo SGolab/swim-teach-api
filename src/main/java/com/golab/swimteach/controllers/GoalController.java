@@ -1,6 +1,7 @@
 package com.golab.swimteach.controllers;
 
 import com.golab.swimteach.dto.GoalDto;
+import com.golab.swimteach.dto.GoalsListDto;
 import com.golab.swimteach.model.User;
 import com.golab.swimteach.services.GoalService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,7 +19,7 @@ public class GoalController {
     }
 
     @GetMapping("/goals")
-    public List<GoalDto> getGoalList(@AuthenticationPrincipal User user) {
+    public GoalsListDto getGoalList(@AuthenticationPrincipal User user) {
         if (user.getSwimmer() == null) {
             return goalService.getGoalList();
         } else {
@@ -32,7 +33,7 @@ public class GoalController {
     }
 
     @GetMapping("/swimmers/{swimmerId}/goals")
-    public List<GoalDto> getGoalListBySwimmerId(@PathVariable Long swimmerId) {
+    public GoalsListDto getGoalListBySwimmerId(@PathVariable Long swimmerId) {
         return goalService.getGoalList(swimmerId);
     }
 }
