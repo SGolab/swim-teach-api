@@ -38,5 +38,6 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
                 .sign(Algorithm.HMAC256(secret));
 
         response.addHeader("Authorization", "Bearer " + token);
+        response.addHeader("User", principal.getUsername());
     }
 }
