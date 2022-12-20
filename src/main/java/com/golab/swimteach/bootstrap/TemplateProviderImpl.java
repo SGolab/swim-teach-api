@@ -15,12 +15,9 @@ import java.nio.file.Files;
 public class TemplateProviderImpl implements TemplateProvider {
 
     private final String TREE_TEMPLATE_PATH;
-    private final String GOALS_TEMPLATE_PATH;
 
-    public TemplateProviderImpl(@Value("${progressTree.templatePath}") String treeTemplatePath,
-                                @Value("${goals.templatePath}") String goalsTemplatePath) {
+    public TemplateProviderImpl(@Value("${progressTree.templatePath}") String treeTemplatePath) {
         TREE_TEMPLATE_PATH = treeTemplatePath;
-        GOALS_TEMPLATE_PATH = goalsTemplatePath;
     }
 
     @Override
@@ -39,15 +36,6 @@ public class TemplateProviderImpl implements TemplateProvider {
 
     @Override
     public GoalsTemplate getGoalsTemplate() {
-        ClassPathResource resource = new ClassPathResource(GOALS_TEMPLATE_PATH);
-
-        try {
-            String json = Files.readString(resource.getFile().toPath(), Charset.defaultCharset());
-
-            GoalsTemplate template = new Gson().fromJson(json, GoalsTemplate.class);
-            return template;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return new GoalsTemplate(this.getProgressTreeTemplate().getGoalDetailsList());
     }
 }

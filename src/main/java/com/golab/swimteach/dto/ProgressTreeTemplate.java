@@ -8,7 +8,9 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Getter
 @Setter
@@ -47,14 +49,15 @@ public class ProgressTreeTemplate {
     }
 
     public List<GoalDetails> getGoalDetailsList() {
-        List<GoalDetails> result = new ArrayList<>();
+        Stream<GoalDetails> stageGoalsStream = stages.stream()
+                .map(StageTemplate::getGoal)
+                .filter(Objects::nonNull);
 
-        stages.stream()
-                .peek(stage -> result.add(stage.getGoal()))
-                .flatMap(stage -> stage.getSubjects().stream())
-                .map(subject -> subject.getGoal())
-                .forEach(result::add);
+        Stream<GoalDetails> subjectGoalsStream = stages.stream()
+                .flatMap(stageTemplate -> stageTemplate.getSubjects().stream())
+                .map(subjectTemplate -> subjectTemplate.getGoal())
+                .filter(Objects::nonNull);
 
-        return result;
+        return Stream.concat(stageGoalsStream, subjectGoalsStream).toList();
     }
 }

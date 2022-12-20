@@ -50,13 +50,11 @@ public class DataLoader implements CommandLineRunner {
         ProgressTreeTemplate progressTreeTemplate = templateProvider.getProgressTreeTemplate();
         templateRepository.setTreeTemplate(progressTreeTemplate);
 
-        skillDetailsRepository.saveAll(progressTreeTemplate.getSkillDetailsList());
-
         GoalsTemplate goalsTemplate = templateProvider.getGoalsTemplate();
         templateRepository.setGoalTemplate(goalsTemplate);
 
+        skillDetailsRepository.saveAll(progressTreeTemplate.getSkillDetailsList());
         goalDetailsRepository.saveAll(progressTreeTemplate.getGoalDetailsList());
-//        goalDetailsRepository.saveAll(goalsTemplate.getGoals());
     }
 
     private void loadUsers() {
