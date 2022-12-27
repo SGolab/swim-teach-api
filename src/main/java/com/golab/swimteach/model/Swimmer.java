@@ -3,9 +3,7 @@ package com.golab.swimteach.model;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,11 +24,15 @@ public class Swimmer {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Goal> goalsSet = new HashSet<>();
 
-    public Swimmer(String firstName, String lastName, Set<SkillDetails> skillDetails, Set<GoalDetails> goalDetails) {
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private Set<Lesson> lessonSet = new HashSet<>();
+
+    public Swimmer(String firstName, String lastName, Set<SkillDetails> skillDetails, Set<GoalDetails> goalDetails, Set<Lesson> lessons) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.skillSet = skillDetails.stream().map(Skill::new).collect(Collectors.toSet());
         this.goalsSet = goalDetails.stream().map(Goal::new).collect(Collectors.toSet());
+        this.lessonSet = lessons;
     }
 
     public Swimmer() {
