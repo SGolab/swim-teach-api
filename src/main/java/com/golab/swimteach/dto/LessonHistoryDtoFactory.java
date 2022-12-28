@@ -58,7 +58,7 @@ public class LessonHistoryDtoFactory {
 
         SkillMarkDto skillMarkDto = new SkillMarkDto();
 
-        skillMarkDto.setSkillDetailsId(skillMark.getSkillDetails().getId().toString());
+        skillMarkDto.setSkillDetailsId(skillMark.getSkillDetails().getId());
         skillMarkDto.setSkillDetailsTitle(skillMark.getSkillDetails().getTitle());
         skillMarkDto.setSkillStatus(skillMark.getSkillStatus().toString());
 

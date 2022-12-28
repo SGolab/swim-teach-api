@@ -21,7 +21,7 @@ public class LessonHistoryDto {
         @Getter
         @Setter
         static class SkillMarkDto {
-            private String skillDetailsId;
+            private Long skillDetailsId;
             private String skillDetailsTitle;
             private String skillStatus;
         }

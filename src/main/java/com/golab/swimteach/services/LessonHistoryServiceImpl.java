@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class LessonHistoryServiceImpl implements LessonHistoryService {
+public class LessonHistoryServiceImpl implements LessonService {
 
     private final SwimmerRepository swimmerRepository;
 
