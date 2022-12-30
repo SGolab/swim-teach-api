@@ -36,9 +36,4 @@ public class ProgressTreeController {
     public ProgressTreeDto getProgressTreeBySwimmerId(@PathVariable Long swimmerId) {
         return progressTreeService.getProgressTree(swimmerId);
     }
-
-    @PutMapping("/skills/{skillId}/updateStatus")
-    public SkillDto updateSkillStatus(@PathVariable Long skillId, @RequestBody SkillDto skillDto) {
-        return progressTreeService.updateSkillStatus(skillId, skillDto);
-    }
 }

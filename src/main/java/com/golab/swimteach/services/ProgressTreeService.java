@@ -7,6 +7,4 @@ public interface ProgressTreeService {
     ProgressTreeDto getProgressTree(Long swimmerId);
 
     ProgressTreeDto getProgressTreeAllUnlocked();
-
-    SkillDto updateSkillStatus(Long skillId, SkillDto skillDto);
 }

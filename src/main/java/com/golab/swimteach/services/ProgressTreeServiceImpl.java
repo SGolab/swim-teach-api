@@ -43,16 +43,4 @@ public class ProgressTreeServiceImpl implements ProgressTreeService {
 
         return ProgressTreeFactory.createProgressTreeAllUnlocked(template);
     }
-
-    @Override
-    public SkillDto updateSkillStatus(Long skillId, SkillDto skillDto) {
-
-        Skill skill = skillRepository.findById(skillId)
-                .orElseThrow(() -> new RuntimeException("Skill Not Found"));
-
-        skill.setStatus(skillDto.getStatus());
-        Skill savedSkill = skillRepository.save(skill);
-
-        return skillMapper.toSkillDto(savedSkill);
-    }
 }
