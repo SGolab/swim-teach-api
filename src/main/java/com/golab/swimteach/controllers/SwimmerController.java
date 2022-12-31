@@ -1,6 +1,6 @@
 package com.golab.swimteach.controllers;
 
-import com.golab.swimteach.model.Swimmer;
+import com.golab.swimteach.dto.SwimmerDto;
 import com.golab.swimteach.services.SwimmerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ public class SwimmerController {
     }
 
     @GetMapping("/swimmers")
-    public List<Swimmer> getAllSwimmers() {
+    public List<SwimmerDto> getAllSwimmers() {
         return swimmerService.getAllSwimmers();
     }
 }

@@ -31,6 +31,7 @@ public class LessonHistoryDtoFactory {
                         .toList();
 
         lessonHistoryDto.setLessons(lessonDtoList);
+
         return lessonHistoryDto;
     }
 }

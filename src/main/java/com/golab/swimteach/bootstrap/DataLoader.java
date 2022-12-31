@@ -76,9 +76,9 @@ public class DataLoader implements CommandLineRunner {
         Set<GoalDetails> goalDetails = new HashSet<>(goalDetailsRepository.findAll());
 
         List<Swimmer> swimmerList = List.of(
-                new Swimmer("AA", "BB", skillDetails, goalDetails,
+                new Swimmer("Bohdan", "Lutsak", skillDetails, goalDetails,
                         Set.of(createLesson(skillDetails), createLesson(skillDetails), createLesson(skillDetails))),
-                new Swimmer("CC", "DD", skillDetails, goalDetails,
+                new Swimmer("Grazynka", "Sadowy", skillDetails, goalDetails,
                         Set.of(createLesson(skillDetails), createLesson(skillDetails), createLesson(skillDetails))));
 
         swimmerRepository.saveAll(swimmerList);

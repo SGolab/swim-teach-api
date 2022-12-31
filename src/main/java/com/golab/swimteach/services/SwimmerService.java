@@ -1,11 +1,11 @@
 package com.golab.swimteach.services;
 
-import com.golab.swimteach.model.Swimmer;
+import com.golab.swimteach.dto.SwimmerDto;
 
 import java.util.List;
 
 public interface SwimmerService {
 
-    List<Swimmer> getAllSwimmers();
+    List<SwimmerDto> getAllSwimmers();
 
 }

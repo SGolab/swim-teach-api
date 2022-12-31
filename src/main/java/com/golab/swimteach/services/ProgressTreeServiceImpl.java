@@ -3,13 +3,11 @@ package com.golab.swimteach.services;
 import com.golab.swimteach.dto.ProgressTreeDto;
 import com.golab.swimteach.dto.ProgressTreeFactory;
 import com.golab.swimteach.dto.ProgressTreeTemplate;
-import com.golab.swimteach.dto.SkillDto;
 import com.golab.swimteach.mapper.SkillMapper;
-import com.golab.swimteach.model.Skill;
 import com.golab.swimteach.model.Swimmer;
-import com.golab.swimteach.repositories.TemplateRepository;
 import com.golab.swimteach.repositories.SkillRepository;
 import com.golab.swimteach.repositories.SwimmerRepository;
+import com.golab.swimteach.repositories.TemplateRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class ProgressTreeServiceImpl implements ProgressTreeService {
 
         ProgressTreeTemplate template = progressTreeTemplateRepository.getTreeTemplate();
 
-        return ProgressTreeFactory.createProgressTree(template, new ArrayList<>(swimmer.getSkillSet()), new ArrayList<>(swimmer.getGoalsSet()));
+        return ProgressTreeFactory.createProgressTree(template, new ArrayList<>(swimmer.getSkillSet()), new ArrayList<>(swimmer.getGoalsSet()), swimmer.getFirstName() + " " + swimmer.getLastName());
     }
 
     @Override

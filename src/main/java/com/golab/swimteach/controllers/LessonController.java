@@ -26,7 +26,13 @@ public class LessonController {
         }
     }
 
-    @PostMapping ("/swimmers/{swimmerId}/createLesson")
+    @GetMapping("swimmers/{swimmerId}/lessonHistory")
+    public LessonHistoryDto getLessonHistory(@PathVariable Long swimmerId, @AuthenticationPrincipal User user) {
+        return lessonService.getLessonHistory(user.getSwimmer().getId());
+
+    }
+
+    @PostMapping("/swimmers/{swimmerId}/createLesson")
     @ResponseStatus(HttpStatus.CREATED)
     public LessonDto createLesson(@PathVariable Long swimmerId, @RequestBody LessonDto lessonDto) {
         return lessonService.createLesson(swimmerId, lessonDto);

@@ -56,7 +56,6 @@ public class LessonServiceImpl implements LessonService {
 
         LessonHistoryDto lessonHistoryDto =
                 lessonHistoryDtoFactory.createLessonHistoryDto(lessonList);
-
         return lessonHistoryDto;
     }
 

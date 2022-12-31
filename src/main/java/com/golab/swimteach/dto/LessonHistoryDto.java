@@ -8,6 +8,5 @@ import java.util.List;
 @Getter
 @Setter
 public class LessonHistoryDto {
-
     private List<LessonDto> lessons;
 }

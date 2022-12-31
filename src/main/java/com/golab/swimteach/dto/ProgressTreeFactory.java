@@ -22,9 +22,10 @@ public class ProgressTreeFactory {
     private ProgressTreeFactory() {
     }
 
-    public static ProgressTreeDto createProgressTree(ProgressTreeTemplate template, List<Skill> skills, List<Goal> goals) {
+    public static ProgressTreeDto createProgressTree(ProgressTreeTemplate template, List<Skill> skills, List<Goal> goals, String swimmerName) {
         ProgressTreeDto progressTreeDto = new ProgressTreeDto();
         progressTreeDto.setStages(createStages(template.getStages(), skills, goals));
+        progressTreeDto.setSwimmerName(swimmerName);
         return progressTreeDto;
     }
 
@@ -84,6 +85,7 @@ public class ProgressTreeFactory {
     public static ProgressTreeDto createProgressTreeAllUnlocked(ProgressTreeTemplate template) {
         ProgressTreeDto progressTreeDto = new ProgressTreeDto();
         progressTreeDto.setStages(createStagesAllUnlocked(template.getStages()));
+        progressTreeDto.setSwimmerName("Admin (all unlocked)");
         return progressTreeDto;
     }
 

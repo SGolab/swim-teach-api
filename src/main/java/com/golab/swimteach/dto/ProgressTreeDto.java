@@ -1,6 +1,5 @@
 package com.golab.swimteach.dto;
 
-import com.golab.swimteach.model.Goal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +9,7 @@ import java.util.List;
 @Setter
 public class ProgressTreeDto {
 
+    private String swimmerName;
     private List<Stage> stages;
 
     @Getter
