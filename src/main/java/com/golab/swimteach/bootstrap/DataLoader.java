@@ -90,7 +90,7 @@ public class DataLoader implements CommandLineRunner {
         lesson.setDateTime(LocalDateTime.now());
 
         SkillMark skillMark = new SkillMark();
-        skillMark.setSkillStatus(SkillStatus.NOT_TRAINED);
+        skillMark.setSkillStatus(SkillStatus.TRAINED);
         skillMark.setSkillDetails(
              skillDetails.stream().skip(new Random().nextInt(skillDetails.size())).findFirst().orElse(null)
         );

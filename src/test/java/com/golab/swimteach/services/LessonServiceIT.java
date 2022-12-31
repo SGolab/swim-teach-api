@@ -42,6 +42,8 @@ class LessonServiceIT {
     @Test
     void createLesson() {
         //prepare
+        long initCount = lessonRepository.count();
+
         Swimmer swimmer = swimmerRepository.findAll().get(0);
 
         LessonDto lessonDto = LessonDto.builder()
@@ -65,5 +67,7 @@ class LessonServiceIT {
         Assertions.assertEquals(acquiredSkill.getStatus(), SkillStatus.ACQUIRED);
 
         Assertions.assertFalse(swimmerUpdated.getLessonSet().isEmpty());
+
+        Assertions.assertEquals(initCount + 1, lessonRepository.count());
     }
 }

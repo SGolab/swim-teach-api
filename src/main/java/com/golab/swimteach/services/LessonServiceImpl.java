@@ -33,7 +33,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public LessonHistoryDto getLessonHistory() {
-        return lessonHistoryDtoFactory.createLessonHistoryDto(List.of());
+        return lessonHistoryDtoFactory.createLessonHistoryDto(List.of(), "admin");
     }
 
     @Override
@@ -55,7 +55,7 @@ public class LessonServiceImpl implements LessonService {
         });
 
         LessonHistoryDto lessonHistoryDto =
-                lessonHistoryDtoFactory.createLessonHistoryDto(lessonList);
+                lessonHistoryDtoFactory.createLessonHistoryDto(lessonList, swimmer.getFirstName() + " " + swimmer.getLastName());
         return lessonHistoryDto;
     }
 

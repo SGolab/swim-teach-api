@@ -8,5 +8,6 @@ import java.util.List;
 @Getter
 @Setter
 public class LessonHistoryDto {
+    private String swimmerName;
     private List<LessonDto> lessons;
 }

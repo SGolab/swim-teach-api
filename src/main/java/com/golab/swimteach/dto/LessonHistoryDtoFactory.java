@@ -21,7 +21,7 @@ public class LessonHistoryDtoFactory {
 
     private final LessonMapper lessonMapper = LessonMapper.getInstance();
 
-    public LessonHistoryDto createLessonHistoryDto(List<Lesson> lessonList) {
+    public LessonHistoryDto createLessonHistoryDto(List<Lesson> lessonList, String swimmerName) {
 
         LessonHistoryDto lessonHistoryDto = new LessonHistoryDto();
 
@@ -31,6 +31,7 @@ public class LessonHistoryDtoFactory {
                         .toList();
 
         lessonHistoryDto.setLessons(lessonDtoList);
+        lessonHistoryDto.setSwimmerName(swimmerName);
 
         return lessonHistoryDto;
     }
