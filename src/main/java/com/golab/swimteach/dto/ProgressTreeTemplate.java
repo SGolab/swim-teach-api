@@ -24,6 +24,7 @@ public class ProgressTreeTemplate {
     @ToString
     public static class StageTemplate {
         private String title;
+        private String description;
         private List<SubjectTemplate> subjects;
         private GoalDetails goal;
 

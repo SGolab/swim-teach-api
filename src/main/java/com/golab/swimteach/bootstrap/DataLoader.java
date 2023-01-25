@@ -89,14 +89,29 @@ public class DataLoader implements CommandLineRunner {
         lesson.setLocation("Conrada 6");
         lesson.setDateTime(LocalDateTime.now());
 
-        SkillMark skillMark = new SkillMark();
-        skillMark.setSkillStatus(SkillStatus.TRAINED);
-        skillMark.setSkillDetails(
-             skillDetails.stream().skip(new Random().nextInt(skillDetails.size())).findFirst().orElse(null)
-        );
-
-        lesson.setSkillMarks(Set.of(skillMark));
+        lesson.setSkillMarks(createSkillMarkSetRandomSize(skillDetails));
 
         return lesson;
+    }
+
+    private Set<SkillMark> createSkillMarkSetRandomSize(Set<SkillDetails> skillDetails) {
+
+        Set<SkillMark> result = new HashSet<>();
+
+        for (int i = 0; i < Math.random() * 6; i++) {
+            result.add(createSkillMark(skillDetails));
+        }
+
+        return result;
+    }
+
+    private SkillMark createSkillMark(Set<SkillDetails> skillDetails) {
+        SkillMark skillMark = new SkillMark();
+        skillMark.setSkillStatus(Math.random() > 0.5 ? SkillStatus.TRAINED : SkillStatus.ACQUIRED);
+        skillMark.setSkillDetails(
+                skillDetails.stream().skip(new Random().nextInt(skillDetails.size())).findFirst().orElse(null)
+        );
+
+        return skillMark;
     }
 }

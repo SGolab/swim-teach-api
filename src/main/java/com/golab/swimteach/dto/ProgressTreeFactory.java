@@ -37,6 +37,7 @@ public class ProgressTreeFactory {
         stageTemplates.forEach(stageTemplate -> {
             Stage stage = new Stage();
             stage.setTitle(stageTemplate.getTitle());
+            stage.setDescription(stageTemplate.getDescription());
             stage.setSubjects(createSubjects(stageTemplate.getSubjects(), skills, goals));
             stage.setGoal(goalMapper.toGoalDto(goals.stream()
                     .filter(g -> g.getDetails().getId().equals(stageTemplate.getGoal().getId()))

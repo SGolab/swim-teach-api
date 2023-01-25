@@ -16,6 +16,7 @@ public class ProgressTreeDto {
     @Setter
     static class Stage {
         private String title;
+        private String description;
         private List<Subject> subjects;
         private GoalDto goal;
 
