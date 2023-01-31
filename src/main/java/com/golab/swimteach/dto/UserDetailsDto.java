@@ -10,7 +10,7 @@ import java.util.Set;
 @Getter
 public class UserDetailsDto {
     private String userName;
-    private Set<Role> roles;
+    private Set<String> roleNames;
     private String firstName;
     private String lastName;
 }

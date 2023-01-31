@@ -27,14 +27,16 @@ public class DataLoader implements CommandLineRunner {
     private final SwimmerRepository swimmerRepository;
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, TemplateProvider progressTreeTemplateProvider, TemplateRepository progressTreeTemplateRepository, SwimmerRepository swimmerRepository, UserRepository userRepository) {
+    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, TemplateProvider progressTreeTemplateProvider, TemplateRepository progressTreeTemplateRepository, SwimmerRepository swimmerRepository, UserRepository userRepository, RoleRepository roleRepository) {
         this.skillDetailsRepository = skillDetailsRepository;
         this.goalDetailsRepository = goalDetailsRepository;
         this.templateProvider = progressTreeTemplateProvider;
         this.templateRepository = progressTreeTemplateRepository;
         this.swimmerRepository = swimmerRepository;
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -55,11 +57,19 @@ public class DataLoader implements CommandLineRunner {
         goalDetailsRepository.saveAll(progressTreeTemplate.getGoalDetailsList());
     }
 
+    private void loadRoles() {
+
+    }
+
     private void loadUsers() {
         User admin = new User();
         admin.setSwimmer(null);
         admin.setUsername("admin");
         admin.setPassword("{noop}password");
+        Role adminRole = new Role();
+        adminRole.setName("ADMIN");
+        roleRepository.save(adminRole);
+        admin.setRoles(Set.of(adminRole));
 
         userRepository.save(admin);
 
@@ -67,6 +77,10 @@ public class DataLoader implements CommandLineRunner {
         client.setSwimmer(swimmerRepository.findAll().get(0));
         client.setUsername("client");
         client.setPassword("{noop}password");
+        Role clientRole = new Role();
+        clientRole.setName("CLIENT");
+        roleRepository.save(clientRole);
+        client.setRoles(Set.of(clientRole));
 
         userRepository.save(client);
     }
@@ -77,9 +91,37 @@ public class DataLoader implements CommandLineRunner {
 
         List<Swimmer> swimmerList = List.of(
                 new Swimmer("Bohdan", "Lutsak", skillDetails, goalDetails,
-                        Set.of(createLesson(skillDetails), createLesson(skillDetails), createLesson(skillDetails))),
+                        Set.of(createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails),
+                                createLesson(skillDetails)
+                        )),
                 new Swimmer("Grazynka", "Sadowy", skillDetails, goalDetails,
                         Set.of(createLesson(skillDetails), createLesson(skillDetails), createLesson(skillDetails))));
+
+        swimmerList.forEach(swimmer -> {
+            Set<Lesson> lessonSet = swimmer.getLessonSet();
+
+            List<SkillMark> skillMarks = lessonSet.stream()
+                    .flatMap(lesson -> lesson.getSkillMarks().stream())
+                    .toList();
+
+            skillMarks.forEach(skillMark -> {
+                swimmer.getSkillSet().stream()
+                        .filter(skill-> skill.getSkillDetails().getId() == skillMark.getSkillDetails().getId())
+                        .findFirst()
+                        .orElseThrow()
+                        .setStatus(skillMark.getSkillStatus());
+            });
+
+        });
 
         swimmerRepository.saveAll(swimmerList);
     }

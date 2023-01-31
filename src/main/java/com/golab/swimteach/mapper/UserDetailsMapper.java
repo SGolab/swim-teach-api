@@ -1,7 +1,10 @@
 package com.golab.swimteach.mapper;
 
 import com.golab.swimteach.dto.UserDetailsDto;
+import com.golab.swimteach.model.Role;
 import com.golab.swimteach.model.User;
+
+import java.util.stream.Collectors;
 
 public class UserDetailsMapper {
 
@@ -18,7 +21,7 @@ public class UserDetailsMapper {
         UserDetailsDto dto = new UserDetailsDto();
 
         dto.setUserName(user.getUsername());
-        dto.setRoles(user.getRoles());
+        dto.setRoleNames(user.getRoles().stream().map(Role::getName).collect(Collectors.toSet()));
         if (user.getSwimmer() != null) {
             dto.setFirstName(user.getSwimmer().getFirstName());
             dto.setLastName(user.getSwimmer().getLastName());
