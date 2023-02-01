@@ -1,9 +1,12 @@
-package com.golab.swimteach.dto;
+package com.golab.swimteach.mapper;
 
+import com.golab.swimteach.dto.ProgressTreeDto;
 import com.golab.swimteach.dto.ProgressTreeDto.Stage;
 import com.golab.swimteach.dto.ProgressTreeDto.Stage.Subject;
+import com.golab.swimteach.dto.ProgressTreeTemplate;
 import com.golab.swimteach.dto.ProgressTreeTemplate.StageTemplate;
 import com.golab.swimteach.dto.ProgressTreeTemplate.StageTemplate.SubjectTemplate;
+import com.golab.swimteach.dto.SkillDto;
 import com.golab.swimteach.mapper.GoalMapper;
 import com.golab.swimteach.mapper.SkillMapper;
 import com.golab.swimteach.model.Goal;

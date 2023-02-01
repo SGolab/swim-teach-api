@@ -14,7 +14,7 @@ public class ProgressTreeDto {
 
     @Getter
     @Setter
-    static class Stage {
+    public static class Stage {
         private String title;
         private String description;
         private List<Subject> subjects;
@@ -22,8 +22,7 @@ public class ProgressTreeDto {
 
         @Getter
         @Setter
-        static
-        class Subject {
+        public static class Subject {
             private String title;
             private List<SkillDto> skills;
             private GoalDto goal;

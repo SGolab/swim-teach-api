@@ -1,7 +1,7 @@
 package com.golab.swimteach.services;
 
 import com.golab.swimteach.dto.ProgressTreeDto;
-import com.golab.swimteach.dto.ProgressTreeFactory;
+import com.golab.swimteach.mapper.ProgressTreeFactory;
 import com.golab.swimteach.dto.ProgressTreeTemplate;
 import com.golab.swimteach.mapper.SkillMapper;
 import com.golab.swimteach.model.Swimmer;

@@ -2,7 +2,7 @@ package com.golab.swimteach.services;
 
 import com.golab.swimteach.dto.LessonDto;
 import com.golab.swimteach.dto.LessonHistoryDto;
-import com.golab.swimteach.dto.LessonHistoryDtoFactory;
+import com.golab.swimteach.mapper.LessonHistoryDtoFactory;
 import com.golab.swimteach.mapper.LessonMapper;
 import com.golab.swimteach.model.Lesson;
 import com.golab.swimteach.model.Skill;

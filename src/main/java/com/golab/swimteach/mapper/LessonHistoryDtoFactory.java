@@ -1,6 +1,7 @@
-package com.golab.swimteach.dto;
+package com.golab.swimteach.mapper;
 
-import com.golab.swimteach.mapper.LessonMapper;
+import com.golab.swimteach.dto.LessonDto;
+import com.golab.swimteach.dto.LessonHistoryDto;
 import com.golab.swimteach.model.Lesson;
 
 import java.util.List;

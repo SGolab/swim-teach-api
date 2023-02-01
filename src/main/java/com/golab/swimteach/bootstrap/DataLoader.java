@@ -8,10 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -24,16 +21,19 @@ public class DataLoader implements CommandLineRunner {
 
     private final TemplateRepository templateRepository;
 
+    private final HomeworkRepository homeworkRepository;
+
     private final SwimmerRepository swimmerRepository;
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, TemplateProvider progressTreeTemplateProvider, TemplateRepository progressTreeTemplateRepository, SwimmerRepository swimmerRepository, UserRepository userRepository, RoleRepository roleRepository) {
+    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, TemplateProvider progressTreeTemplateProvider, TemplateRepository progressTreeTemplateRepository, HomeworkRepository homeworkRepository, SwimmerRepository swimmerRepository, UserRepository userRepository, RoleRepository roleRepository) {
         this.skillDetailsRepository = skillDetailsRepository;
         this.goalDetailsRepository = goalDetailsRepository;
         this.templateProvider = progressTreeTemplateProvider;
         this.templateRepository = progressTreeTemplateRepository;
+        this.homeworkRepository = homeworkRepository;
         this.swimmerRepository = swimmerRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -55,10 +55,6 @@ public class DataLoader implements CommandLineRunner {
 
         skillDetailsRepository.saveAll(progressTreeTemplate.getSkillDetailsList());
         goalDetailsRepository.saveAll(progressTreeTemplate.getGoalDetailsList());
-    }
-
-    private void loadRoles() {
-
     }
 
     private void loadUsers() {
@@ -106,6 +102,7 @@ public class DataLoader implements CommandLineRunner {
                 new Swimmer("Grazynka", "Sadowy", skillDetails, goalDetails,
                         Set.of(createLesson(skillDetails), createLesson(skillDetails), createLesson(skillDetails))));
 
+        //make skills in lessons match skills of swimmers
         swimmerList.forEach(swimmer -> {
             Set<Lesson> lessonSet = swimmer.getLessonSet();
 
@@ -115,15 +112,35 @@ public class DataLoader implements CommandLineRunner {
 
             skillMarks.forEach(skillMark -> {
                 swimmer.getSkillSet().stream()
-                        .filter(skill-> skill.getSkillDetails().getId() == skillMark.getSkillDetails().getId())
+                        .filter(skill -> skill.getSkillDetails().getId() == skillMark.getSkillDetails().getId())
                         .findFirst()
                         .orElseThrow()
                         .setStatus(skillMark.getSkillStatus());
             });
-
         });
 
-        swimmerRepository.saveAll(swimmerList);
+        List<Swimmer> savedSwimmers = swimmerRepository.saveAll(swimmerList);
+
+        //create homeworks
+        savedSwimmers.forEach(swimmer -> {
+            for (int i = 0; i < 3; i++) {
+                swimmer.addHomework(createHomework(swimmer.getSkillSet().stream().toList()));
+            }
+        });
+
+        swimmerRepository.saveAll(savedSwimmers);
+    }
+
+    private Homework createHomework(List<Skill> skills) {
+        Homework homework = new Homework();
+        homework.setDescription("SAMPLE DESCRIPTION");
+        homework.setDateTime(LocalDateTime.now());
+
+        List<Skill> skillListFiltered = skills.stream().filter(skill -> skill.getStatus() != SkillStatus.NOT_TRAINED).toList();
+
+        homework.setSkills(skillListFiltered.subList(0, new Random().nextInt(skillListFiltered.size())));
+
+        return homework;
     }
 
     private Lesson createLesson(Set<SkillDetails> skillDetails) {

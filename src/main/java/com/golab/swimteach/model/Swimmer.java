@@ -27,8 +27,15 @@ public class Swimmer {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Lesson> lessonSet = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.MERGE)
+    private Set<Homework> homeworkSet = new HashSet<>();
+
     public void addLesson(Lesson lesson) {
         lessonSet.add(lesson);
+    }
+
+    public void addHomework(Homework homework) {
+        homeworkSet.add(homework);
     }
 
     public Swimmer(String firstName, String lastName, Set<SkillDetails> skillDetails, Set<GoalDetails> goalDetails, Set<Lesson> lessons) {
