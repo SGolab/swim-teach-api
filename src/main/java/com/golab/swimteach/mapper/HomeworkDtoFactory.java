@@ -35,14 +35,14 @@ public class HomeworkDtoFactory {
         return homeworkDto;
     }
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final SkillMapper skillMapper = SkillMapper.getInstance();
 
     private HomeworkItemDto createHomeworkItemDto(Homework homework) {
 
         HomeworkItemDto homeworkItemDto = new HomeworkItemDto();
 
-        homeworkItemDto.setDateTime(formatter.format(homework.getDateTime()));
+        homeworkItemDto.setDate(dateFormatter.format(homework.getDateTime()));
         homeworkItemDto.setDescription(homework.getDescription());
         homeworkItemDto.setSkills(homework.getSkills().stream().map(skillMapper::toSkillDto).collect(Collectors.toList()));
 

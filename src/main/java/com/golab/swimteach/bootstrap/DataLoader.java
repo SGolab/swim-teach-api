@@ -133,7 +133,7 @@ public class DataLoader implements CommandLineRunner {
 
     private Homework createHomework(List<Skill> skills) {
         Homework homework = new Homework();
-        homework.setDescription("SAMPLE DESCRIPTION");
+//        homework.setDescription("SAMPLE DESCRIPTION");
         homework.setDateTime(LocalDateTime.now());
 
         List<Skill> skillListFiltered = skills.stream().filter(skill -> skill.getStatus() != SkillStatus.NOT_TRAINED).toList();
