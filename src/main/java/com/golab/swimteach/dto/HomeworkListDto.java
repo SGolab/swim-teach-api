@@ -15,9 +15,9 @@ public class HomeworkListDto {
     @Setter
     public static class HomeworkItemDto {
         private String date;
-        private String time;
         private String description;
         private List<SkillDto> skills;
+        private List<String> customSkills;
     }
 
 }

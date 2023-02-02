@@ -28,4 +28,7 @@ public class Homework {
             inverseJoinColumns = @JoinColumn( name="skill_id")
     )
     private List<Skill> skills;
+
+    @ElementCollection
+    private List<String> customSkills;
 }
