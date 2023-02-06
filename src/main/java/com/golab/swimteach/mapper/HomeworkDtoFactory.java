@@ -42,6 +42,7 @@ public class HomeworkDtoFactory {
 
         HomeworkItemDto homeworkItemDto = new HomeworkItemDto();
 
+        homeworkItemDto.setId(homework.getId());
         homeworkItemDto.setDate(dateFormatter.format(homework.getDateTime()));
         homeworkItemDto.setDescription(homework.getDescription());
         homeworkItemDto.setSkills(homework.getSkills().stream().map(skillMapper::toSkillDto).collect(Collectors.toList()));

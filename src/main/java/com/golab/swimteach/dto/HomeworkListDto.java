@@ -14,6 +14,7 @@ public class HomeworkListDto {
     @Getter
     @Setter
     public static class HomeworkItemDto {
+        private Long id;
         private String date;
         private String description;
         private List<SkillDto> skills;
