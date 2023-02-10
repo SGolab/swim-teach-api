@@ -14,6 +14,7 @@ public class LessonDto {
     private String time;
     private String location;
     private List<SkillMarkDto> skillMarks;
+    private Long homeworkId;
 
     @Getter
     @Setter

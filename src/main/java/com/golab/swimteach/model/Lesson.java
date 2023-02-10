@@ -21,4 +21,7 @@ public class Lesson {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<SkillMark> skillMarks;
+
+    @OneToOne
+    private Homework homework;
 }

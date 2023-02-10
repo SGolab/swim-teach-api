@@ -46,6 +46,10 @@ public class LessonMapper {
         lessonDto.setLocation(lesson.getLocation());
         lessonDto.setSkillMarks(lesson.getSkillMarks().stream().map(this::toSkillMarkDto).toList());
 
+        if (lesson.getHomework() != null) {
+            lessonDto.setHomeworkId(lesson.getHomework().getId());
+        }
+
         return lessonDto;
     }
 
