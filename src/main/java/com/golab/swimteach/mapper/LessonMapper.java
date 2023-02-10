@@ -24,12 +24,14 @@ public class LessonMapper {
 
     private LessonMapper() {}
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public Lesson toLesson(LessonDto dto, List<SkillDetails> skillDetails) {
         Lesson lesson = new Lesson();
 
-        lesson.setDateTime(LocalDateTime.parse(dto.getDateTime(), formatter));
+        lesson.setDateTime(LocalDateTime.parse(dto.getDate() + " " + dto.getTime(), dateTimeFormatter));
         lesson.setLocation(dto.getLocation());
         lesson.setSkillMarks(dto.getSkillMarks().stream().map(smdto -> toSkillMark(smdto, skillDetails)).collect(Collectors.toSet()));
 
@@ -39,7 +41,8 @@ public class LessonMapper {
     public LessonDto toDto(Lesson lesson) {
         LessonDto lessonDto = new LessonDto();
 
-        lessonDto.setDateTime(lesson.getDateTime().format(formatter));
+        lessonDto.setDate(lesson.getDateTime().format(dateFormatter));
+        lessonDto.setTime(lesson.getDateTime().format(timeFormatter));
         lessonDto.setLocation(lesson.getLocation());
         lessonDto.setSkillMarks(lesson.getSkillMarks().stream().map(this::toSkillMarkDto).toList());
 

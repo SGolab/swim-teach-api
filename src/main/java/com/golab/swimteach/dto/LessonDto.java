@@ -10,7 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LessonDto {
-    private String dateTime;
+    private String date;
+    private String time;
     private String location;
     private List<SkillMarkDto> skillMarks;
 

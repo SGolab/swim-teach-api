@@ -137,7 +137,7 @@ public class DataLoader implements CommandLineRunner {
         homework.setDateTime(LocalDateTime.now());
 
         List<Skill> skillListFiltered = skills.stream().filter(skill -> skill.getStatus() != SkillStatus.NOT_TRAINED).toList();
-        homework.setSkills(skillListFiltered.subList(0, new Random().nextInt(skillListFiltered.size())));
+        homework.setSkills(skillListFiltered.subList(0, new Random().nextInt(1, Math.min(skillListFiltered.size(), 5))));
 
         List<String> customSkills = List.of(
                 "200m breaststroke",
