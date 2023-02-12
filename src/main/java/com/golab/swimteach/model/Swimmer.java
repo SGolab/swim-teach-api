@@ -24,7 +24,7 @@ public class Swimmer {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Goal> goalsSet = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Lesson> lessonSet = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.MERGE)
