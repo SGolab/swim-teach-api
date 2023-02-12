@@ -22,6 +22,6 @@ public class Lesson {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<SkillMark> skillMarks;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     private Homework homework;
 }
