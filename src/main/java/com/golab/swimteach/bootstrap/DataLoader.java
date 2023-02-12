@@ -23,17 +23,20 @@ public class DataLoader implements CommandLineRunner {
 
     private final HomeworkRepository homeworkRepository;
 
+    private final LessonRepository lessonRepository;
+
     private final SwimmerRepository swimmerRepository;
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, TemplateProvider progressTreeTemplateProvider, TemplateRepository progressTreeTemplateRepository, HomeworkRepository homeworkRepository, SwimmerRepository swimmerRepository, UserRepository userRepository, RoleRepository roleRepository) {
+    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, TemplateProvider progressTreeTemplateProvider, TemplateRepository progressTreeTemplateRepository, HomeworkRepository homeworkRepository, LessonRepository lessonRepository, SwimmerRepository swimmerRepository, UserRepository userRepository, RoleRepository roleRepository) {
         this.skillDetailsRepository = skillDetailsRepository;
         this.goalDetailsRepository = goalDetailsRepository;
         this.templateProvider = progressTreeTemplateProvider;
         this.templateRepository = progressTreeTemplateRepository;
         this.homeworkRepository = homeworkRepository;
+        this.lessonRepository = lessonRepository;
         this.swimmerRepository = swimmerRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -128,6 +131,23 @@ public class DataLoader implements CommandLineRunner {
             }
         });
 
+        savedSwimmers = swimmerRepository.saveAll(savedSwimmers);
+
+        //bind lessons with homeworks
+        savedSwimmers.forEach(swimmer -> {
+            Set<Homework> homeworkSet = swimmer.getHomeworkSet();
+            Iterator<Homework> iterator = homeworkSet.iterator();
+
+            swimmer.getLessonSet().forEach(lesson -> {
+                if (iterator.hasNext()) {
+
+                    Homework homework = iterator.next();
+                    lesson.setHomework(homework);
+                    lessonRepository.save(lesson);
+                }
+            });
+        });
+
         swimmerRepository.saveAll(savedSwimmers);
     }
 
@@ -152,7 +172,7 @@ public class DataLoader implements CommandLineRunner {
 
     private Lesson createLesson(Set<SkillDetails> skillDetails) {
         Lesson lesson = new Lesson();
-        lesson.setLocation("Conrada 6");
+        lesson.setLocation("CRS Bielany Conrada 6");
         lesson.setDateTime(LocalDateTime.now());
 
         lesson.setSkillMarks(createSkillMarkSetRandomSize(skillDetails));
