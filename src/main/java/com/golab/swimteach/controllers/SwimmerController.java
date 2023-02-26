@@ -2,9 +2,8 @@ package com.golab.swimteach.controllers;
 
 import com.golab.swimteach.dto.SwimmerDto;
 import com.golab.swimteach.services.SwimmerService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,11 @@ public class SwimmerController {
     @GetMapping("/swimmers/{swimmerId}/details")
     public SwimmerDto getSwimmerDetails(@PathVariable Long swimmerId) {
         return swimmerService.getSwimmerInfo(swimmerId);
+    }
+
+    @PostMapping("/swimmers/new")
+    @ResponseStatus(HttpStatus.CREATED)
+    public SwimmerDto getSwimmerDetails(@RequestBody SwimmerDto dto) {
+        return swimmerService.createNewSwimmer(dto);
     }
 }

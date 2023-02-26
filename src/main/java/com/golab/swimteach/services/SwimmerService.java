@@ -9,4 +9,6 @@ public interface SwimmerService {
     List<SwimmerDto> getAllSwimmers();
 
     SwimmerDto getSwimmerInfo(Long swimmerId);
+
+    SwimmerDto createNewSwimmer(SwimmerDto dto);
 }
