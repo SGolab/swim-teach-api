@@ -2,6 +2,7 @@ package com.golab.swimteach.services;
 
 import com.golab.swimteach.mapper.SwimmerMapper;
 import com.golab.swimteach.dto.SwimmerDto;
+import com.golab.swimteach.model.Swimmer;
 import com.golab.swimteach.repositories.SwimmerRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,11 @@ public class SwimmerServiceImpl implements SwimmerService{
                 .stream()
                 .map(swimmerMapper::toDto)
                 .toList();
+    }
+
+    @Override
+    public SwimmerDto getSwimmerInfo(Long swimmerId) {
+        Swimmer foundSwimmer = swimmerRepository.findById(swimmerId).orElseThrow(); //todo exceptions
+        return swimmerMapper.toDto(foundSwimmer);
     }
 }

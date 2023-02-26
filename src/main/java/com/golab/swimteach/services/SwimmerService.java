@@ -8,4 +8,5 @@ public interface SwimmerService {
 
     List<SwimmerDto> getAllSwimmers();
 
+    SwimmerDto getSwimmerInfo(Long swimmerId);
 }

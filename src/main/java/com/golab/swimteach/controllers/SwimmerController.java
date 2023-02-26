@@ -3,6 +3,7 @@ package com.golab.swimteach.controllers;
 import com.golab.swimteach.dto.SwimmerDto;
 import com.golab.swimteach.services.SwimmerService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,5 +20,10 @@ public class SwimmerController {
     @GetMapping("/swimmers")
     public List<SwimmerDto> getAllSwimmers() {
         return swimmerService.getAllSwimmers();
+    }
+
+    @GetMapping("/swimmers/{swimmerId}/details")
+    public SwimmerDto getSwimmerDetails(@PathVariable Long swimmerId) {
+        return swimmerService.getSwimmerInfo(swimmerId);
     }
 }
