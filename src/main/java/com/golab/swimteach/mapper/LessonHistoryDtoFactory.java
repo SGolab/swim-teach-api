@@ -31,7 +31,7 @@ public class LessonHistoryDtoFactory {
 
         List<LessonDto> lessonDtoList =
                 lessonList.stream()
-                        .map(lessonMapper::toDto)
+                        .map(lesson -> lessonMapper.toDto(lesson))
                         .toList();
 
         lessonHistoryDto.setLessons(lessonDtoList);

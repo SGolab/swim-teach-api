@@ -4,6 +4,7 @@ import com.golab.swimteach.dto.GoalsTemplate;
 import com.golab.swimteach.dto.ProgressTreeTemplate;
 import com.golab.swimteach.model.*;
 import com.golab.swimteach.repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +31,18 @@ public class DataLoader implements CommandLineRunner {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public DataLoader(SkillDetailsRepository skillDetailsRepository, GoalDetailsRepository goalDetailsRepository, TemplateProvider progressTreeTemplateProvider, TemplateRepository progressTreeTemplateRepository, HomeworkRepository homeworkRepository, LessonRepository lessonRepository, SwimmerRepository swimmerRepository, UserRepository userRepository, RoleRepository roleRepository) {
+    private final String AUTH_ENCRYPTION;
+
+    public DataLoader(SkillDetailsRepository skillDetailsRepository,
+                      GoalDetailsRepository goalDetailsRepository,
+                      TemplateProvider progressTreeTemplateProvider,
+                      TemplateRepository progressTreeTemplateRepository,
+                      HomeworkRepository homeworkRepository,
+                      LessonRepository lessonRepository,
+                      SwimmerRepository swimmerRepository,
+                      UserRepository userRepository,
+                      RoleRepository roleRepository,
+                      @Value("${auth.encryption}") String authEncryption) {
         this.skillDetailsRepository = skillDetailsRepository;
         this.goalDetailsRepository = goalDetailsRepository;
         this.templateProvider = progressTreeTemplateProvider;
@@ -40,6 +52,7 @@ public class DataLoader implements CommandLineRunner {
         this.swimmerRepository = swimmerRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.AUTH_ENCRYPTION = authEncryption;
     }
 
     @Override
@@ -64,7 +77,7 @@ public class DataLoader implements CommandLineRunner {
         User admin = new User();
         admin.setSwimmer(null);
         admin.setUsername("admin");
-        admin.setPassword("{noop}password");
+        admin.setPassword(AUTH_ENCRYPTION + "password");
         Role adminRole = new Role();
         adminRole.setName("ADMIN");
         roleRepository.save(adminRole);
@@ -75,7 +88,7 @@ public class DataLoader implements CommandLineRunner {
         User client = new User();
         client.setSwimmer(swimmerRepository.findAll().get(0));
         client.setUsername("client");
-        client.setPassword("{noop}password");
+        client.setPassword(AUTH_ENCRYPTION + "password");
         Role clientRole = new Role();
         clientRole.setName("CLIENT");
         roleRepository.save(clientRole);
