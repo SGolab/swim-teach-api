@@ -24,6 +24,8 @@ public class LessonDto {
     public static class SkillMarkDto {
         private Long skillDetailsId;
         private String skillDetailsTitle;
+        private String stageTitle;
+        private String subjectTitle;
         private String skillDetailsUrl;
         private String skillStatus;
     }

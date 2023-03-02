@@ -1,12 +1,14 @@
 package com.golab.swimteach.model;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
+@Setter
 @ToString
 @Entity
 public class SkillDetails {
@@ -15,6 +17,9 @@ public class SkillDetails {
     private Long id;
 
     private String title;
+
+    private String subjectTitle;
+    private String stageTitle;
 
     @Lob
     private String description;

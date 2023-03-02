@@ -28,6 +28,23 @@ public class TemplateProviderImpl implements TemplateProvider {
             String json = Files.readString(resource.getFile().toPath(), Charset.defaultCharset());
 
             ProgressTreeTemplate template = new Gson().fromJson(json, ProgressTreeTemplate.class);
+
+            template.getStages().forEach(stage -> {
+
+                stage.getSubjects().forEach(subjectTemplate -> {
+
+                    subjectTemplate.getSkills().forEach(skillDetails -> {
+
+                        skillDetails.setStageTitle(stage.getTitle());
+                        skillDetails.setSubjectTitle(subjectTemplate.getTitle());
+
+                    });
+
+                });
+
+            });
+
+
             return template;
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -58,6 +58,8 @@ public class LessonMapper {
 
         skillMarkDto.setSkillDetailsId(skillMark.getSkillDetails().getId());
         skillMarkDto.setSkillDetailsTitle(skillMark.getSkillDetails().getTitle());
+        skillMarkDto.setStageTitle(skillMark.getSkillDetails().getStageTitle());
+        skillMarkDto.setSubjectTitle(skillMark.getSkillDetails().getSubjectTitle());
         skillMarkDto.setSkillDetailsUrl(skillMark.getSkillDetails().getUrl());
         skillMarkDto.setSkillStatus(skillMark.getSkillStatus().toString());
 
