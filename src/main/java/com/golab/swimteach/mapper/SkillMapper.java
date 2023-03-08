@@ -16,10 +16,14 @@ public class SkillMapper {
 
     public SkillDto toSkillDto(Skill skill) {
         SkillDto skillDto = new SkillDto();
-        skillDto.setId(skill.getId());
+
         skillDto.setStatus(skill.getStatus());
         skillDto.setDetailsId(skill.getSkillDetails().getId());
+
         skillDto.setTitle(skill.getSkillDetails().getTitle());
+        skillDto.setStageTitle(skill.getSkillDetails().getStageTitle());
+        skillDto.setSubjectTitle(skill.getSkillDetails().getSubjectTitle());
+
         skillDto.setDescription(skill.getSkillDetails().getDescription());
         skillDto.setUrl(skill.getSkillDetails().getUrl());
         return skillDto;

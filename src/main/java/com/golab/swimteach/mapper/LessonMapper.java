@@ -1,11 +1,10 @@
 package com.golab.swimteach.mapper;
 
 import com.golab.swimteach.dto.LessonDto;
-import com.golab.swimteach.dto.LessonDto.SkillMarkDto;
+import com.golab.swimteach.dto.SkillMarkDto;
 import com.golab.swimteach.model.Lesson;
 import com.golab.swimteach.model.SkillDetails;
 import com.golab.swimteach.model.SkillMark;
-import com.golab.swimteach.model.SkillStatus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,12 +27,14 @@ public class LessonMapper {
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
+    SkillMarkMapper skillMarkMapper = SkillMarkMapper.getInstance();
+
     public Lesson toLesson(LessonDto dto, List<SkillDetails> skillDetails) {
         Lesson lesson = new Lesson();
 
         lesson.setDateTime(LocalDateTime.parse(dto.getDate() + " " + dto.getTime(), dateTimeFormatter));
         lesson.setLocation(dto.getLocation());
-        lesson.setSkillMarks(dto.getSkillMarks().stream().map(smdto -> toSkillMark(smdto, skillDetails)).collect(Collectors.toSet()));
+        lesson.setSkillMarks(dto.getSkillMarks().stream().map(smdto -> skillMarkMapper.toSkillMark(smdto, skillDetails)).collect(Collectors.toSet()));
 
         return lesson;
     }
@@ -44,39 +45,12 @@ public class LessonMapper {
         lessonDto.setDate(lesson.getDateTime().format(dateFormatter));
         lessonDto.setTime(lesson.getDateTime().format(timeFormatter));
         lessonDto.setLocation(lesson.getLocation());
-        lessonDto.setSkillMarks(lesson.getSkillMarks().stream().map(this::toSkillMarkDto).toList());
+        lessonDto.setSkillMarks(lesson.getSkillMarks().stream().map(skillMark -> skillMarkMapper.toSkillMarkDto(skillMark)).toList());
 
         if (lesson.getHomework() != null) {
             lessonDto.setHomeworkId(lesson.getHomework().getId());
         }
 
         return lessonDto;
-    }
-
-    private SkillMarkDto toSkillMarkDto(SkillMark skillMark) {
-        SkillMarkDto skillMarkDto = new SkillMarkDto();
-
-        skillMarkDto.setSkillDetailsId(skillMark.getSkillDetails().getId());
-        skillMarkDto.setSkillDetailsTitle(skillMark.getSkillDetails().getTitle());
-        skillMarkDto.setStageTitle(skillMark.getSkillDetails().getStageTitle());
-        skillMarkDto.setSubjectTitle(skillMark.getSkillDetails().getSubjectTitle());
-        skillMarkDto.setSkillDetailsUrl(skillMark.getSkillDetails().getUrl());
-        skillMarkDto.setSkillStatus(skillMark.getSkillStatus().toString());
-
-        return skillMarkDto;
-    }
-
-    private SkillMark toSkillMark(SkillMarkDto dto, List<SkillDetails> skillDetails) {
-        SkillMark skillMark = new SkillMark();
-
-        skillMark.setSkillDetails(
-                skillDetails.stream()
-                        .filter(sd -> sd.getId().equals(dto.getSkillDetailsId()))
-                        .findFirst()
-                        .orElseThrow()
-        );
-        skillMark.setSkillStatus(SkillStatus.valueOf(dto.getSkillStatus()));
-
-        return skillMark;
     }
 }

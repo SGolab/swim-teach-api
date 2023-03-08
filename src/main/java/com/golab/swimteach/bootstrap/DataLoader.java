@@ -131,7 +131,7 @@ public class DataLoader implements CommandLineRunner {
                         .filter(skill -> skill.getSkillDetails().getId() == skillMark.getSkillDetails().getId())
                         .findFirst()
                         .orElseThrow()
-                        .setStatus(skillMark.getSkillStatus());
+                        .setStatus(skillMark.getStatus());
             });
         });
 
@@ -206,7 +206,17 @@ public class DataLoader implements CommandLineRunner {
 
     private SkillMark createSkillMark(Set<SkillDetails> skillDetails) {
         SkillMark skillMark = new SkillMark();
-        skillMark.setSkillStatus(Math.random() > 0.5 ? SkillStatus.TRAINED : SkillStatus.ACQUIRED);
+        skillMark.setStatus(Math.random() > 0.5 ? SkillStatus.TRAINED : SkillStatus.ACQUIRED);
+
+        SkillStatus prevStatus;
+
+        if (skillMark.getStatus().ordinal() > 0) {
+            prevStatus = SkillStatus.values()[skillMark.getStatus().ordinal() - 1];
+        } else {
+            prevStatus = SkillStatus.NOT_TRAINED;
+        }
+
+        skillMark.setPrevStatus(prevStatus);
         skillMark.setSkillDetails(
                 skillDetails.stream().skip(new Random().nextInt(skillDetails.size())).findFirst().orElse(null)
         );

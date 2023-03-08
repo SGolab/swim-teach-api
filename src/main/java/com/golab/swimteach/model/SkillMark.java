@@ -17,5 +17,6 @@ public class SkillMark {
     @OneToOne
     private SkillDetails skillDetails;
 
-    private SkillStatus skillStatus;
+    private SkillStatus status;
+    private SkillStatus prevStatus;
 }

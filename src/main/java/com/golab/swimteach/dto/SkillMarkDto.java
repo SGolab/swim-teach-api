@@ -1,15 +1,19 @@
 package com.golab.swimteach.dto;
 
 import com.golab.swimteach.model.SkillStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
 @Getter
-public class SkillDto {
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class SkillMarkDto {
+
     private Long detailsId;
 
     private SkillStatus status;
+    private SkillStatus prevStatus;
 
     private String title;
     private String stageTitle;

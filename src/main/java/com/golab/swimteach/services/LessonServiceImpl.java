@@ -2,6 +2,7 @@ package com.golab.swimteach.services;
 
 import com.golab.swimteach.dto.LessonDto;
 import com.golab.swimteach.dto.LessonHistoryDto;
+import com.golab.swimteach.dto.SkillMarkDto;
 import com.golab.swimteach.mapper.LessonHistoryDtoFactory;
 import com.golab.swimteach.mapper.LessonMapper;
 import com.golab.swimteach.model.Lesson;
@@ -67,7 +68,7 @@ public class LessonServiceImpl implements LessonService {
 
         List<SkillDetails> skillDetails = lessonDto.getSkillMarks()
                 .stream()
-                .map(LessonDto.SkillMarkDto::getSkillDetailsId)
+                .map(SkillMarkDto::getDetailsId)
                 .map(id -> skillDetailsRepository.findById(id).orElseThrow())
                 .toList();
 
@@ -84,7 +85,7 @@ public class LessonServiceImpl implements LessonService {
                     .findFirst()
                     .orElseThrow();
 
-            foundSkill.setStatus(skillMark.getSkillStatus());
+            foundSkill.setStatus(skillMark.getStatus());
         });
 
         swimmerRepository.save(swimmer);
