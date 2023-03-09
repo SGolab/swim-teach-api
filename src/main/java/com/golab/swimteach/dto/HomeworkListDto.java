@@ -17,7 +17,7 @@ public class HomeworkListDto {
         private Long id;
         private String date;
         private String description;
-        private List<SkillDto> skills;
+        private List<TaskDto> tasks;
         private List<String> customSkills;
     }
 

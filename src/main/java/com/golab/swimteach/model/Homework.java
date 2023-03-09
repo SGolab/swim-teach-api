@@ -23,12 +23,9 @@ public class Homework {
 
     @ManyToMany
     @JoinTable(
-            name="homework_skills",
+            name="homework_tasks",
             joinColumns = @JoinColumn( name="homework_id"),
-            inverseJoinColumns = @JoinColumn( name="skill_id")
+            inverseJoinColumns = @JoinColumn( name="task_id")
     )
-    private List<Skill> skills;
-
-    @ElementCollection
-    private List<String> customSkills;
+    private List<Task> tasks;
 }

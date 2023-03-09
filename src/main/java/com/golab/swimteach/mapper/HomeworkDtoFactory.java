@@ -37,6 +37,7 @@ public class HomeworkDtoFactory {
 
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final SkillMapper skillMapper = SkillMapper.getInstance();
+    private final TaskMapper taskMapper = TaskMapper.getInstance();
 
     private HomeworkItemDto createHomeworkItemDto(Homework homework) {
 
@@ -45,8 +46,7 @@ public class HomeworkDtoFactory {
         homeworkItemDto.setId(homework.getId());
         homeworkItemDto.setDate(dateFormatter.format(homework.getDateTime()));
         homeworkItemDto.setDescription(homework.getDescription());
-        homeworkItemDto.setSkills(homework.getSkills().stream().map(skillMapper::toSkillDto).collect(Collectors.toList()));
-        homeworkItemDto.setCustomSkills(homework.getCustomSkills());
+        homeworkItemDto.setTasks(homework.getTasks().stream().map(taskMapper::toTaskDto).collect(Collectors.toList()));
 
         return homeworkItemDto;
     }

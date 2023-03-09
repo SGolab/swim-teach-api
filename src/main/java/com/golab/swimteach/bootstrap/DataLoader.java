@@ -24,6 +24,8 @@ public class DataLoader implements CommandLineRunner {
 
     private final HomeworkRepository homeworkRepository;
 
+    private final TaskRepository taskRepository;
+
     private final LessonRepository lessonRepository;
 
     private final SwimmerRepository swimmerRepository;
@@ -38,7 +40,7 @@ public class DataLoader implements CommandLineRunner {
                       TemplateProvider progressTreeTemplateProvider,
                       TemplateRepository progressTreeTemplateRepository,
                       HomeworkRepository homeworkRepository,
-                      LessonRepository lessonRepository,
+                      TaskRepository taskRepository, LessonRepository lessonRepository,
                       SwimmerRepository swimmerRepository,
                       UserRepository userRepository,
                       RoleRepository roleRepository,
@@ -48,6 +50,7 @@ public class DataLoader implements CommandLineRunner {
         this.templateProvider = progressTreeTemplateProvider;
         this.templateRepository = progressTreeTemplateRepository;
         this.homeworkRepository = homeworkRepository;
+        this.taskRepository = taskRepository;
         this.lessonRepository = lessonRepository;
         this.swimmerRepository = swimmerRepository;
         this.userRepository = userRepository;
@@ -170,15 +173,24 @@ public class DataLoader implements CommandLineRunner {
         homework.setDateTime(LocalDateTime.now());
 
         List<Skill> skillListFiltered = skills.stream().filter(skill -> skill.getStatus() != SkillStatus.NOT_TRAINED).toList();
-        homework.setSkills(skillListFiltered.subList(0, new Random().nextInt(1, Math.min(skillListFiltered.size(), 5))));
+        skillListFiltered = skillListFiltered.subList(0, new Random().nextInt(1, Math.min(skillListFiltered.size(), 5)));
+        List<Task> taskList = new ArrayList<>(skillListFiltered.stream().map(skill -> new Task(skill.getSkillDetails(), UnitEnum.METERS, 25)).toList());
 
         List<String> customSkills = List.of(
-                "200m breaststroke",
-                "300m butterfly",
-                "4 x 25m underwater breaststroke",
-                "125m kickboard legs only");
+                "breaststroke",
+                "butterfly",
+                "underwater breaststroke",
+                "kickboard legs only");
 
-        homework.setCustomSkills(customSkills.subList(0, new Random().nextInt(1, customSkills.size())));
+        taskList.addAll(
+                customSkills.subList(0, new Random().nextInt(1, customSkills.size()))
+                        .stream()
+                        .map(customTitle -> new Task(customTitle, UnitEnum.METERS, 25))
+                        .toList());
+
+        List<Task> savedTaskList = taskRepository.saveAll(taskList);
+
+        homework.setTasks(savedTaskList);
 
         return homework;
     }
